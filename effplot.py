@@ -33,7 +33,6 @@ def iter_subplot(y,x, pos, gfunc):
         
 
 def efficiency(p, N):
-    print("N: " + str(N) + "res: " +str(speedup(p,N)/p))
     return speedup(p, N)/p
 
 
