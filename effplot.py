@@ -53,7 +53,7 @@ def tau(p, N): #Time graphs
             tau[i] = tau[i] + 2
 
     tau[0] = 2*N
-    print(tau)
+
     return tau
 
 def main():
