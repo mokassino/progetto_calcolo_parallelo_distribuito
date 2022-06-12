@@ -43,7 +43,7 @@ double vectorsum(float **c, float**a, float**b, int alpha, long int n , int npro
 		}
 		imov = tnum*copy_nloc + step;
 		for (i=imov; i<imov+copy_nloc; i++){ 
-			(*c)[i] =  (*a)[i] * alpha + (*b)[i] ;
+			(*c)[i] =  (*a)[i] * (float)alpha + (*b)[i] ;
 		}
 	}
 	ec = omp_get_wtime();
@@ -53,7 +53,7 @@ double vectorsum(float **c, float**a, float**b, int alpha, long int n , int npro
 
 int usage(){
 	printf("Uso: inserisci due interi: prima il numero di processori e poi alpha\n");
-	return 1;
+	exit(1);
 }
 
 //In input il main prende il numero di processori e alpha
@@ -79,7 +79,9 @@ int main(int argc, char* argv[]){
 		return usage();
 	}
 
-	read_file(&a, &b, &n ); //vedi util.h
+	if ( read_file(&a, &b, &n ) != 0 ){ //vedi util.h
+                exit(1);
+        }
 
 	c = (float *) malloc(n*sizeof(float)); //alloco il vettore C
 
