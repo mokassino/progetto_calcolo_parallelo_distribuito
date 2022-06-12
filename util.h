@@ -36,11 +36,21 @@ int read_file(float **a, float **b, long int *n){
 	*a = (float *)malloc(nwrap * sizeof(float)); //allocazione dinamica della memoria
 	*b = (float *)malloc(nwrap * sizeof(float)); //allocazione dinamica della memoria
 
-	while ( getline(&buf, &len, vector_a) != -1 && k < nwrap){
-		(*a)[k] = atoi(buf);
-		//getline(&buf, &len, vector_b);
-		(*b)[k++] = atoi(buf);
-    }
+	while ( k < nwrap){
+                if ( getline(&buf, &len, vector_a) == -1){
+                        printf("Errore lettura dal file vector_a\n");
+                        return 1;
+
+                }
+                (*a)[k] = atof(buf);
+                if ( getline(&buf, &len, vector_b) == -1){
+                        printf("Errore lettura dal file vector_b\n");
+                        return 1;
+                }
+
+                (*b)[k++] = atof(buf);
+        }
+
 
 	return 0;
 }
